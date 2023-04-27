@@ -4,11 +4,15 @@
  */
 package com.vtt.configs;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -19,6 +23,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
+@EnableTransactionManagement
 @ComponentScan(basePackages = {"com.vtt.controllers"})
 public class WebApplicationContextConfig implements WebMvcConfigurer {
 
@@ -27,6 +32,12 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         configurer.enable();
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
+        registry.addResourceHandler("/image/**").addResourceLocations("/resources/image/");
+    }
+    
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver r = new InternalResourceViewResolver();
@@ -34,5 +45,14 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         r.setPrefix("/WEB-INF/pages/");
         r.setSuffix(".jsp");
         return r;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource resource
+                = new ResourceBundleMessageSource();
+        resource.setBasename("messages");
+// resource.setBasenames("messages1", "messages2");
+        return resource;
     }
 }
