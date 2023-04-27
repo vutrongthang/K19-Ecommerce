@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.vtt.repository.impl;
+package com.vtt.repository;
 
-import org.springframework.stereotype.Repository;
+import com.vtt.pojo.Category;
+import java.util.List;
 
 /**
  *
  * @author vutrongthang
  */
-@Repository
-public class StatsRepositoryImpl {
+public interface CategoryRepository {
+    List<Category> getCategories();
     
 }

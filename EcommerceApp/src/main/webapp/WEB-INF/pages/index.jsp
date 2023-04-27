@@ -58,9 +58,9 @@
                             <img class="card-img-top" src="${p.image}" alt="Card image">
                             <div class="card-body">
                                 <h4 class="card-title">${p.productName}</h4>
-                                <p class="card-text">${p.price}</p>
+                                <p class="card-text">${p.price} VNĐ</p>
                                 <a href="#" class="btn btn-primary">Xem chi tiết</a>
-                                <a href="#" class="btn btn-danger">Đặt hàng</a>
+                                <a href="#" class="btn btn-danger px-4">Đặt hàng</a>
                             </div>
                         </div>
                     </div>

@@ -6,10 +6,12 @@ package com.vtt.controllers;
 
 import com.vtt.pojo.Category;
 import com.vtt.pojo.Products;
+import com.vtt.service.CategoryService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class HomeController {
+
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping("/")
     public String index(Model model,
@@ -36,13 +41,20 @@ public class HomeController {
         products.add(new Products(3, "Iphone 14 Promax", "https://cdn.tgdd.vn/hoi-dap/1421873/top-6-dien-thoai-man-hinh-full-hd-gia-re-tai-the-gioi-di-1-800x450.jpg", new BigDecimal(34000000)));
         products.add(new Products(4, "Iphone 14 Promax", "https://cdn.tgdd.vn/hoi-dap/1421873/top-6-dien-thoai-man-hinh-full-hd-gia-re-tai-the-gioi-di-1-800x450.jpg", new BigDecimal(34000000)));
         products.add(new Products(5, "Iphone 14 Promax", "https://cdn.tgdd.vn/hoi-dap/1421873/top-6-dien-thoai-man-hinh-full-hd-gia-re-tai-the-gioi-di-1-800x450.jpg", new BigDecimal(34000000)));
-        
-        if (kw !=null && !kw.isEmpty())
+
+        if (kw != null && !kw.isEmpty()) {
             products = products.stream().filter(p -> p.getProductName().contains(kw)).collect(Collectors.toList());
-        
+        }
+
         model.addAttribute("categories", cates);
         model.addAttribute("products", products);
         return "index";
 
+    }
+
+    @RequestMapping("/home")
+    public String index(Model model) {
+        model.addAttribute("categories", this.categoryService.getCategories());
+        return "index";
     }
 }
