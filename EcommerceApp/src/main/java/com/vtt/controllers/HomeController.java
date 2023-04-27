@@ -52,9 +52,9 @@ public class HomeController {
 
     }
 
-    @RequestMapping("/home")
-    public String index(Model model) {
-        model.addAttribute("categories", this.categoryService.getCategories());
-        return "index";
-    }
+//    @RequestMapping("/home")
+//    public String index(Model model) {
+//        model.addAttribute("categories", this.categoryService.getCategories());
+//        return "index";
+//    }
 }
