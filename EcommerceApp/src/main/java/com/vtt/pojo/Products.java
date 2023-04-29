@@ -47,11 +47,13 @@ public class Products implements Serializable {
     @Column(name = "ProductID")
     private Integer productID;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @NotNull(message = "{product.name.nullerr}")
+    @Size(min = 1, max = 255, message = "{product.name.lenerr}")
     @Column(name = "ProductName")
     private String productName;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull(message = "{product.price.nuller}")
     @Column(name = "Price")
     private BigDecimal price;
     @Column(name = "Quantity")
@@ -67,10 +69,10 @@ public class Products implements Serializable {
     @ManyToOne(optional = false)
     private Category categoryID;
 
+    @NotNull(message = "Vui lòng chọn ảnh")
     @Transient
     private MultipartFile file;
-    
-    
+
     public Products() {
     }
 
@@ -82,7 +84,8 @@ public class Products implements Serializable {
         this.productID = productID;
         this.productName = productName;
     }
-    public Products(Integer productID, String productName, String image,BigDecimal price ) {
+
+    public Products(Integer productID, String productName, String image, BigDecimal price) {
         this.productID = productID;
         this.productName = productName;
         this.image = image;
@@ -183,5 +186,5 @@ public class Products implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-    
+
 }

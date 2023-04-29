@@ -17,14 +17,20 @@
         <form:input type="text"  class="form-control" id="name" placeholder="Tên sản phẩm" path="productName" name="name" />
         <label for="name">Tên sản phẩm</label>
     </div>
+    <form:errors path="productName" element="div" cssClass="alert alert-danger"/>
+
     <div class="form-floating mb-3 mt-3">
         <form:input type="number"  class="form-control" id="price" placeholder="Tên sản phẩm" path="price" name="price" />
         <label for="price">Giá sản phẩm</label>
     </div>
+    <form:errors path="price" element="div" cssClass="alert alert-danger"/>
+
     <div class="form-floating mb-3 mt-3">
         <form:input type="file"  class="form-control" id="file" placeholder="Tên sản phẩm" path="file" name="file" />
         <label for="file">Ảnh sản phẩm</label>
     </div>
+    <form:errors path="file" element="div" cssClass="alert alert-danger"/>
+
     <div class="form-floating">
         <form:select class="form-select" id="categoryID" path="categoryID" name="categoryID">
             <c:forEach items="${categories}" var="c">
@@ -33,6 +39,7 @@
         </form:select>
         <label for="sel1" class="form-label">Danh mục sản phẩm:</label>
     </div>
+
     <div class="form-floating mt-3">
         <input type="submit" value="Thêm sản phẩm" class="btn btn-danger"/>
     </div>
