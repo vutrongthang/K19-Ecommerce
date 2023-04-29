@@ -9,10 +9,12 @@ import com.vtt.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.GeneratedValue;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +66,10 @@ public class ProductRepositoryImpl implements ProductRepository {
                 Predicate p = b.equal(root.get("categoryID"), Integer.parseInt(cateId));
                 predicates.add(p);
             }
-            
 
             q.where(predicates.toArray(Predicate[]::new));
         }
-
+        q.orderBy(b.desc(root.get("productID")));
         Query query = s.createQuery(q);
         return query.getResultList();
     }
@@ -78,6 +79,16 @@ public class ProductRepositoryImpl implements ProductRepository {
         Session s = sessionFactory.getObject().getCurrentSession();
         return s.get(Products.class, id);
     }
-    
-    
+
+    @Override
+    public boolean addOrUpdateProduct(Products p) {
+        Session s = sessionFactory.getObject().getCurrentSession();
+        try {
+            s.save(p);
+            return true;
+        } catch (HibernateException ex) {
+            return false;
+        }
+    }
+
 }
