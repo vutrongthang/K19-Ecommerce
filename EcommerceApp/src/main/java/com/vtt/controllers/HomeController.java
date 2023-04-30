@@ -9,6 +9,7 @@ import com.vtt.pojo.Category;
 import com.vtt.pojo.Products;
 import com.vtt.service.CategoryService;
 import com.vtt.service.ProductService;
+import com.vtt.utils.Utils;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +45,10 @@ public class HomeController {
     private ProductService productService;
 
     @ModelAttribute
-    public void commonAttributes(Model model) {
+    public void commonAttributes(Model model, HttpSession session) {
         List<Category> cates = this.categoryService.getCategories();
         model.addAttribute("categories", cates);
-
+        model.addAttribute("cartStats", Utils.cartStats((Map<Integer, Cart>) session.getAttribute("cart")));
     }
 
     @RequestMapping("/")

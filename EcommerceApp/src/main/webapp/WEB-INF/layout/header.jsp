@@ -30,7 +30,7 @@
                     </select>
                 </li>
                   <li class="nav-item ">
-                        <a class="nav-link text-info" href="<c:url value="/cart" />">&#128722; <span class="badge bg-danger cart-counter">0</span></a>
+                        <a class="nav-link text-info" href="<c:url value="/cart" />">&#128722; <span class="badge bg-danger cart-counter">${cartStats.totalQuantity}</span></a>
                     </li>
             </ul>
         </div>
