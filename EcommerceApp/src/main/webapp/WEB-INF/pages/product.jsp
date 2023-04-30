@@ -16,8 +16,15 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="text"  class="form-control" id="name" placeholder="Tên sản phẩm" path="productName" name="name" />
         <label for="name">Tên sản phẩm</label>
-    </div>
+    </div>    
     <form:errors path="productName" element="div" cssClass="alert alert-danger"/>
+
+    <div class="form-floating mb-3 mt-3">
+        <textarea  class="form-control" id="description" placeholder="Mô tả" path="description" name="description" >
+            ${product.description}
+        </textarea>
+        <label for="description">Mô tả sản phẩm</label>
+    </div>
 
     <div class="form-floating mb-3 mt-3">
         <form:input type="number"  class="form-control" id="price" placeholder="Tên sản phẩm" path="price" name="price" />
@@ -51,8 +58,18 @@
         <label for="sel1" class="form-label">Danh mục sản phẩm</label>
     </div>
 
-    <div class="form-floating mt-3">
-        <input type="submit" value="Thêm sản phẩm" class="btn btn-danger"/>
+    <div class="form-floating mb-3 mt-3">
+        <c:choose>
+            <c:when test="${product.productID > 0}">
+                <form:hidden path="productID" />
+                <form:hidden path="image" />
+                <input type="submit"  value="Cập nhật sản phẩm" class="btn btn-success" />
+            </c:when>
+            <c:otherwise>
+                <input type="submit"  value="Thêm sản phẩm" class="btn btn-success" />
+            </c:otherwise>
+        </c:choose>
+
     </div>
 </form:form>
 
