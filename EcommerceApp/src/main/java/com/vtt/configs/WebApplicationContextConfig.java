@@ -49,6 +49,8 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
                 .addResourceLocations("/resources/css/");
         registry.addResourceHandler("/image/**")
                 .addResourceLocations("/resources/image/");
+        registry.addResourceHandler("/js/**")
+                .addResourceLocations(("/resources/js/"));
     }
 
     @Bean
@@ -59,7 +61,8 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         r.setSuffix(".jsp");
         return r;
     }
-
+    
+    
     @Bean(name = "validator")
     public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean bean

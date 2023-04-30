@@ -28,6 +28,7 @@ public class AdminController {
     @GetMapping("/product")
     public String product(Model model){
         model.addAttribute("product", new Products());
+        model.addAttribute("products", this.productService.getProducts(null));        
         return "product";
     }
     @RequestMapping("/product")

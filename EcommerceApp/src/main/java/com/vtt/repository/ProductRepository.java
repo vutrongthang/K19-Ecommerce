@@ -17,5 +17,5 @@ public interface ProductRepository {
     List<Products> getProducts(Map<String, String> params);
     Products getProductById(int id);
     boolean addOrUpdateProduct(Products p);
-
+    boolean deleteProduct(int id);
 }

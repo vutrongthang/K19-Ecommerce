@@ -45,5 +45,29 @@
     </div>
 </form:form>
 
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Id</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+        <th></th>
+    </tr>
+    <c:forEach items="${products}" var="p">
+        <tr id="product${p.productID}">
+            <td><img src="${p.image}" width="200" /></td>
+            <td>${p.productID}</td>
+            <td>${p.productName}</td>
+            <td>${p.price}</td>
+            <td>
+                <div id="spinner${p.productID}" style="display:none" class="spinner-border text-info"></div>
+                <c:url value="/api/products/${p.productID}" var="endpoint"/>
+                <input type="button" onclick="deleteProduct('${endpoint}', ${p.productID})" value="Delete" class="btn btn-danger"/>
+            </td>
+        </tr>
+    </c:forEach>
+</table>
+<script src="<c:url value="/js/product.js"/>"></script>
+
 
 
