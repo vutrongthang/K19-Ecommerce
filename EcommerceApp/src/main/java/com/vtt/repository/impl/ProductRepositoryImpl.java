@@ -84,7 +84,10 @@ public class ProductRepositoryImpl implements ProductRepository {
     public boolean addOrUpdateProduct(Products p) {
         Session s = sessionFactory.getObject().getCurrentSession();
         try {
-            s.save(p);
+            if(p.getProductID()>0)
+                s.update(p);
+            else
+                s.save(p);
             return true;
         } catch (HibernateException ex) {
             return false;

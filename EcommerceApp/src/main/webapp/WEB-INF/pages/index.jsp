@@ -19,12 +19,13 @@
                         <p class="card-text"><small class="text-muted">${p.quantity} in stock</small></p>
                         <p class="card-text"><strong><span id="price">${p.price}</span> VNĐ</strong></p>
                         <div class="d-flex justify-content-between">
-                            <a href="#" type="button" class="btn btn-primary">
+                            <a  href="javascript:;" onclick="addItemToCart('${endpoint}', ${p.id}, '${p.name}', ${p.price})" class="btn btn-danger">
                                Thêm sản phẩm
                             </a>
                             <a href="${detail}" type="button" class="btn btn-danger">
                                Xem chi tiết
-                            </a>
+                            </a>                                                      
+
                         </div>
 
                     </div>
@@ -33,6 +34,8 @@
         </c:forEach>
     </div>
 </div>
+<script src="<c:url value="/js/cart.js" />"></script>
+
 
 
 

@@ -48,7 +48,7 @@ public class AdminController {
         if (rs.hasErrors())
             return "product";
         if (this.productService.addOrUpdateProduct(p) == true)
-            return "redirect:/";
+            return "redirect:/admin/product";
         else
             model.addAttribute("errMsg", "Something Wrong!!!");
         

@@ -4,6 +4,7 @@
  */
 package com.vtt.controllers;
 
+import com.vtt.pojo.Cart;
 import com.vtt.pojo.Category;
 import com.vtt.pojo.Products;
 import com.vtt.service.CategoryService;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +61,11 @@ public class HomeController {
     public String productDetail(Model model, @PathVariable(value = "productId") int id) {
         model.addAttribute("products", this.productService.getProductById(id));
         return "product-detail";
+    }
+
+    @GetMapping("/cart")
+    public String cart(HttpSession session, Model model) {
+        model.addAttribute("cart", (Map<Integer, Cart>) session.getAttribute("cart"));
+        return "cart";
     }
 }

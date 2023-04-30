@@ -29,8 +29,12 @@
                         </c:forEach>
                     </select>
                 </li>
+                  <li class="nav-item ">
+                        <a class="nav-link text-info" href="<c:url value="/cart" />">&#128722; <span class="badge bg-danger cart-counter">0</span></a>
+                    </li>
             </ul>
         </div>
+        
         <c:url value="/" var="action"/>
         <form class="d-flex">
             <input class="form-control me-2" type="text" name="kw" placeholder="Nhập tên...">

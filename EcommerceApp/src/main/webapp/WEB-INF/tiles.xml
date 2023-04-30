@@ -28,4 +28,8 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Chi tiết sản phẩm"/>
         <put-attribute name="content" value="/WEB-INF/pages/product.jsp"/>
     </definition>
+    <definition name="cart" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết sản phẩm"/>
+        <put-attribute name="content" value="/WEB-INF/pages/cart.jsp"/>
+    </definition>
 </tiles-definitions>

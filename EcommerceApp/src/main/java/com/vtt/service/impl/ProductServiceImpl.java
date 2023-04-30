@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean addOrUpdateProduct(Products p) {
-        if (p.getFile() != null) {
+        if (!p.getFile().isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(p.getFile().getBytes(),
                         ObjectUtils.asMap("resource_type", "auto"));
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
         }
         return this.productRepository.addOrUpdateProduct(p);
     }
-
+ 
     @Override
     public boolean deleteProduct(int id) {
         return this.productRepository.deleteProduct(id);
