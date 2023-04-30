@@ -24,7 +24,7 @@ public class ApiProductController {
     @Autowired
     private ProductService productService;
     
-    @DeleteMapping("/products/{productId}")
+    @DeleteMapping("/product/{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(Model model, @PathVariable(value = "productId") int id) {
         this.productService.deleteProduct(id);

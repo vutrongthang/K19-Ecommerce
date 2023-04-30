@@ -28,16 +28,27 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="file"  class="form-control" id="file" placeholder="Tên sản phẩm" path="file" name="file" />
         <label for="file">Ảnh sản phẩm</label>
+        <c:if test="${product.image != null}">
+            <div class="form-floating mb-3 mt-3">
+                <img src="${product.image}" width="120" /> 
+            </div>
+        </c:if>
     </div>
     <form:errors path="file" element="div" cssClass="alert alert-danger"/>
-
     <div class="form-floating">
-        <form:select class="form-select" id="categoryID" path="categoryID" name="categoryID">
+        <form:select class="form-select" path="categoryID" id="categoryID" name="categoryID">
             <c:forEach items="${categories}" var="c">
-                <option value="${c.categoryID}">${c.name}</option>
+                <c:choose>
+                    <c:when test="${product.categoryID.categoryID == c.categoryID}">
+                        <option value="${c.categoryID}" selected>${c.name}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="${c.categoryID}">${c.name}</option>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>
         </form:select>
-        <label for="sel1" class="form-label">Danh mục sản phẩm:</label>
+        <label for="sel1" class="form-label">Danh mục sản phẩm</label>
     </div>
 
     <div class="form-floating mt-3">
@@ -61,8 +72,9 @@
             <td>${p.price}</td>
             <td>
                 <div id="spinner${p.productID}" style="display:none" class="spinner-border text-info"></div>
-                <c:url value="/api/products/${p.productID}" var="endpoint"/>
+                <c:url value="/api/product/${p.productID}" var="endpoint"/>
                 <input type="button" onclick="deleteProduct('${endpoint}', ${p.productID})" value="Delete" class="btn btn-danger"/>
+                <a href="<c:url value="/admin/product/${p.productID}" />" class="btn btn-info">Cập nhật</a>
             </td>
         </tr>
     </c:forEach>
