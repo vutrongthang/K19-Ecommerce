@@ -77,14 +77,11 @@ public class Users implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "First_Name")
     private String firstName;
-<<<<<<< Updated upstream
-=======
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "user_role")
     private String userRole;
->>>>>>> Stashed changes
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
