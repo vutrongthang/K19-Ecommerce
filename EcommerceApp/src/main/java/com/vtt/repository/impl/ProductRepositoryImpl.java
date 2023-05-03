@@ -9,7 +9,6 @@ import com.vtt.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.GeneratedValue;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -73,7 +72,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         Query query = s.createQuery(q);
         return query.getResultList();
     }
-
     @Override
     public Products getProductById(int id) {
         Session s = sessionFactory.getObject().getCurrentSession();
