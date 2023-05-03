@@ -29,8 +29,32 @@
                         </c:forEach>
                     </select>
                 </li>
+<<<<<<< Updated upstream
             </ul>
         </div>
+=======
+                <li class="nav-item ">
+                    <a class="nav-link text-info" href="<c:url value="/cart" />">&#128722; <span class="badge bg-danger cart-counter">${cartStats.totalQuantity}</span></a>
+                </li>
+                <c:choose>
+                    <c:when test="${pageContext.request.userPrincipal.name == null}">
+                        <li class="nav-item">
+                            <a class="nav-link text-info" href="<c:url value="/login" />">Đăng nhập</a>
+                        </li>
+                    </c:when>
+                    <c:when test="${pageContext.request.userPrincipal.name != null}">
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="<c:url value="/" />">Chào ${pageContext.session.getAttribute("currentUser").firstName} ${pageContext.session.getAttribute("currentUser").lastName}!!!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="<c:url value="/logout" />">Đăng xuất</a>
+                        </li>
+                    </c:when>
+                </c:choose>
+            </ul>
+        </div>
+
+>>>>>>> Stashed changes
         <c:url value="/" var="action"/>
         <form class="d-flex">
             <input class="form-control me-2" type="text" name="kw" placeholder="Nhập tên...">
