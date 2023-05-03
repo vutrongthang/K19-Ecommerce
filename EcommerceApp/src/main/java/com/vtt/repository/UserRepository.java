@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.vtt.service;
+package com.vtt.repository;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.vtt.pojo.Users;
 
 /**
  *
  * @author vutrongthang
  */
-public interface UserService extends UserDetailsService{
-    
+public interface UserRepository {
+    Users getUserByUsername(String username);
 }

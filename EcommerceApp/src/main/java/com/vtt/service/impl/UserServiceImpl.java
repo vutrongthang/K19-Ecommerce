@@ -4,10 +4,39 @@
  */
 package com.vtt.service.impl;
 
+import com.vtt.pojo.Users;
+import com.vtt.repository.UserRepository;
+import com.vtt.service.UserService;
+import java.util.HashSet;
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author vutrongthang
  */
-public class UserServiceImpl {
-    
+@Service("userDetailsService")
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users u = userRepository.getUserByUsername(username);
+        if (u == null) {
+            throw new UsernameNotFoundException("Không tồn tại!");
+        }
+
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(u.getUserRole()));
+        return new org.springframework.security.core.userdetails.User(
+                u.getUsername(), u.getPassword(), authorities);
+    }
+
 }
