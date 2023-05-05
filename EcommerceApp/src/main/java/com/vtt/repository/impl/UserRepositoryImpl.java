@@ -10,9 +10,11 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +23,15 @@ import org.springframework.transaction.annotation.Transactional;
  * @author vutrongthang
  */
 @Repository
+@Transactional
 public class UserRepositoryImpl implements UserRepository {
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private LocalSessionFactoryBean factory;
 
     @Override
-    @Transactional
     public Users getUserByUsername(String username) {
         Session s = factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
@@ -40,6 +44,18 @@ public class UserRepositoryImpl implements UserRepository {
         Query query = s.createQuery(q);
         return (Users) query.getSingleResult();
 
+    }
+
+    @Override
+    public boolean addUser(Users user) {
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        Session session = this.factory.getObject().getCurrentSession();
+        try {
+            session.save(user);
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
 
 }

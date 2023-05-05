@@ -4,12 +4,15 @@
  */
 package com.vtt.service;
 
+import com.vtt.pojo.Users;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author vutrongthang
  */
-public interface UserService extends UserDetailsService{
-    
+public interface UserService extends UserDetailsService {
+
+    Users getUserByUsername(String username);
+
 }

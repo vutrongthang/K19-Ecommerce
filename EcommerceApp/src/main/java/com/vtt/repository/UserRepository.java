@@ -11,5 +11,8 @@ import com.vtt.pojo.Users;
  * @author vutrongthang
  */
 public interface UserRepository {
+
+    boolean addUser(Users user);
+
     Users getUserByUsername(String username);
 }
