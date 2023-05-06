@@ -14,8 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -42,6 +42,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    public static final String USER = "ROLE_USER";
+    public static final String ADMIN = "ROLE_ADMIN";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -57,7 +59,7 @@ public class Users implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "Password")
     private String password;
-//     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+//    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -81,7 +83,6 @@ public class Users implements Serializable {
     @Column(name = "First_Name")
     private String firstName;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 10)
     @Column(name = "user_role")
     private String userRole;
@@ -90,7 +91,13 @@ public class Users implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "Last_Name")
     private String lastName;
+    @Transient
+    private String confirmPassword;
 
+    {
+        userRole = USER;
+    }
+    
     public Users() {
     }
 
@@ -217,6 +224,16 @@ public class Users implements Serializable {
      */
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
     
 }

@@ -49,9 +49,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean addUser(Users user) {
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        Session session = this.factory.getObject().getCurrentSession();
+        Session s = factory.getObject().getCurrentSession();
         try {
-            session.save(user);
+            s.save(user);
         } catch (HibernateException ex) {
             System.err.println(ex.getMessage());
         }
