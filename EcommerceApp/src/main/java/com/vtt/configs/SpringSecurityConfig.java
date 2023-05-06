@@ -65,10 +65,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.logout().logoutSuccessHandler(this.logoutHandler);
         http.exceptionHandling()
                 .accessDeniedPage("/login?accessDenied");
-
-        http.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/admin/**")
-                .access("hasRole('ROLE_ADMIN')");
+//
+//        http.authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/admin/**")
+//                .access("hasRole('ROLE_ADMIN')");
         http.csrf().disable();
     }
 
@@ -76,9 +76,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
                 = new Cloudinary(ObjectUtils.asMap(
-                        "cloud_name", "dxxwcby8l",
-                        "api_key", "448651448423589",
-                        "api_secret", "ftGud0r1TTqp0CGp5tjwNmkAm-A",
+                        "cloud_name", "dmmldnu3w",
+                        "api_key", "543883822999128",
+                        "api_secret", "3idMvdSatMsmACV2koSvkoYD0n8",
                         "secure", true));
         return cloudinary;
     }

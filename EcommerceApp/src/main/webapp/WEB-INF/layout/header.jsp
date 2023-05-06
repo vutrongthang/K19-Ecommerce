@@ -47,6 +47,8 @@
                         </li>
                     </c:when>
                 </c:choose>
+                <a href="<c:url value="/register"/>" class="nav-link">Đăng Ký</a>
+                <a href="<c:url value="/admin/product"/>" class="nav-link">Admin</a>
 
             </ul>
         </div>

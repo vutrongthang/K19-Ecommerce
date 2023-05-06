@@ -4,22 +4,29 @@
     Author     : admin
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h1 class="text-center text-success">ĐĂNG NHẬP</h1>
+<h1 class="text-center text-danger">ĐĂNG NHẬP NGƯỜI DÙNG</h1>
+
+<c:if test="${param.error != null}">
+    <div class="alert alert-danger">
+        Username hoặc password không chính xác!!!
+    </div>
+</c:if>
 
 <c:url value="/login" var="action" />
+
 <form method="post" action="${action}">
-    <div class="form-floating mb-3 mt-3">
-        <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập" name="username">
-        <label for="username">Tên đăng nhập</label>
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" />
     </div>
-
-    <div class="form-floating mt-3 mb-3">
-        <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password">
-        <label for="pwd">Mật khẩu</label>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" />
     </div>
-
     <input type="submit" value="Đăng nhập" class="btn btn-danger" />
 </form>
+<br><br>

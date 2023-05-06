@@ -90,14 +90,5 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
     }
     
 
-    @Bean
-    public Cloudinary cloudinary() {
-        Cloudinary cloudinary
-                = new Cloudinary(ObjectUtils.asMap(
-                        "cloud_name", "dmmldnu3w",
-                        "api_key", "543883822999128",
-                        "api_secret", "3idMvdSatMsmACV2koSvkoYD0n8",
-                        "secure", true));
-        return cloudinary;
-    }
+    
 }

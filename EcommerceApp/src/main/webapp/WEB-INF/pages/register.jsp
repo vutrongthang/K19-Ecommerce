@@ -50,7 +50,10 @@
         <label>Confirm password</label>
         <form:password path="confirmPassword" class="form-control" />
     </div>
-    
+    <div class="form-group">
+        <label>Avatar</label>
+        <form:input type="file" path="file" class="form-control" />
+    </div>
     <input type="submit" value="Dang ky" class="btn btn-danger" />
 </form:form>
 <br><br>
