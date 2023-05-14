@@ -7,6 +7,8 @@ package com.vtt.controllers;
 import com.vtt.pojo.Cart;
 import com.vtt.pojo.Category;
 import com.vtt.pojo.Product;
+import com.vtt.service.CategoryService;
+import com.vtt.service.ProductService;
 import com.vtt.utils.Utils;
 import java.util.List;
 import java.util.Map;
