@@ -24,9 +24,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
-    "com.dht.controllers",
-    "com.dht.repository",
-    "com.dht.service"
+    "com.vtt.controllers",
+    "com.vtt.repository",
+    "com.vtt.service"
 })
 public class WebAppContextConfig implements WebMvcConfigurer {
 
@@ -47,17 +47,6 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
     }
-    
-
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
-//        InternalResourceViewResolver r = new InternalResourceViewResolver();
-//        r.setPrefix("/WEB-INF/pages/");
-//        r.setSuffix(".jsp");
-//        r.setViewClass(JstlView.class);
-//        
-//        return r;
-//    }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {

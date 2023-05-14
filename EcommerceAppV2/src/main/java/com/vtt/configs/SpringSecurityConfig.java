@@ -28,10 +28,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableWebSecurity
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
-    "com.dht.controllers",
-    "com.dht.repository",
-    "com.dht.service",
-    "com.dht.handlers"
+    "com.vtt.controllers",
+    "com.vtt.repository",
+    "com.vtt.service",
+    "com.vtt.handlers"
 })
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
