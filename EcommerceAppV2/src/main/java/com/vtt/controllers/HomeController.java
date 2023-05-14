@@ -4,6 +4,10 @@
  */
 package com.vtt.controllers;
 
+import com.vtt.pojo.Cart;
+import com.vtt.pojo.Category;
+import com.vtt.pojo.Product;
+import com.vtt.utils.Utils;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
