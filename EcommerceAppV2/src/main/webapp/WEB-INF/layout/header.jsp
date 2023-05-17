@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <header>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">BÁN HÀNG TRỰC TUYẾN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -20,15 +20,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/" />">Trang chủ</a>
                     </li>
-
-                    <c:forEach items="${categories}" var="c">
-                        <c:url value="/" var="url">
-                            <c:param name="categoryId" value="${c.id}" />
-                        </c:url>
-                        <li class="nav-item">
-                            <a class="nav-link" href="${url}">${c.name}</a>
-                        </li>
-                    </c:forEach>
+                    <li class="nav-item">
+                        <select class="form-select py-2" onchange="location = this.value;">
+                            <option value="/">Tìm theo danh mục</option>
+                            <c:forEach items="${categories}" var="c">
+                                <c:url value="/" var="url">
+                                    <c:param name="categoryId" value="${c.id}" />
+                                </c:url>
+                                <option value="${url}" ${c.id == id ? 'selected' : ''}>${c.name}</option>
+                            </c:forEach>
+                        </select>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-info" href="<c:url value="/cart" />">&#128722; Giỏ hàng <span class="badge bg-danger cart-counter">${cartStats.totalQuantity}</span></a>
                     </li>

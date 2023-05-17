@@ -95,10 +95,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     public boolean addOrUpdateProduct(Product p) {
         Session s = factory.getObject().getCurrentSession();
         try {
-            if (p.getId() > 0)
+            if (p.getId() != null && p.getId() > 0) {
                 s.update(p);
-            else
+            } else {
                 s.save(p);
+            }
             return true;
         } catch (HibernateException ex) {
             return false;
@@ -124,11 +125,11 @@ public class ProductRepositoryImpl implements ProductRepository {
             Session s = factory.getObject().getCurrentSession();
 
             SaleOrder r = new SaleOrder();
-            
+
             r.setUserId(userRepo.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
             s.save(r);
 
-            for (Cart c: cart.values()) {
+            for (Cart c : cart.values()) {
                 OrderDetail d = new OrderDetail();
                 d.setNum(c.getQuantity());
                 d.setUnitPrice(c.getPrice());
@@ -136,7 +137,7 @@ public class ProductRepositoryImpl implements ProductRepository {
                 d.setProductId(this.getProductById(c.getId()));
                 s.save(d);
             }
-            
+
             return true;
         } catch (HibernateException ex) {
             return false;
